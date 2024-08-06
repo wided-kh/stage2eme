@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><h2>CRM</h2></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="/vr">
+                    <i class="fas fa-chart-line"></i>
+                    <span>VR LAND</span>
+                </a>
+            </li>
+            <li>
+                <a href="/fid">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>FID</span>
+                </a>
+            </li>
+            <li>
+                <a href="/pme">
+                    <i class="fas fa-users"></i>
+                    <span>PME</span>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2><%= title %></h2>
+            </div>
+            <div class="user--info">
+                <div class="search--box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="recherche"/>
+                </div>
+                <img src="public/imge admin.png" alt=""/>
+            </div>
+        </div>
+        <div class="main">
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number"><%= clientCount %></div>
+                        <div class="card-name">Clients</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number"><%= paymentAmount %></div>
+                        <div class="card-name">Paiement</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number"><%= activityCount %></div>
+                        <div class="card-name">Activités</div>
+                    </div>
+                    <div class="icon-box">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="charts">
+            <div class="chart">
+                <h2>Paiement</h2>
+                <canvas id="barchart"></canvas>
+            </div>
+            <div class="chart" id="doughnut-chart">
+                <h2><%= title %></h2>
+                <canvas id="doughnut"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+    <script src="/chart2.js"></script>
+    <script src="/chart3.js"></script>
+</body>
+</html>
