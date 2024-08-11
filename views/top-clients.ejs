@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+   /* Style général pour la table */
+.client-table {
+    display: flex;
+    flex-direction: column; /* Aligne le contenu verticalement */
+    align-items: center; /* Centre horizontalement */
+    padding: 20px 0; /* Ajoute du padding en haut et en bas */
+}
+
+/* Style pour la table */
+.client-table table {
+    width: 100%;
+    max-width: 1200px; /* Limite la largeur maximale du tableau */
+    border-collapse: collapse;
+    margin: 0; /* Supprime la marge par défaut */
+    transition: transform 0.3s ease-in-out; /* Ajoute une transition pour le mouvement */
+}
+
+/* Style pour les en-têtes de table */
+.client-table th {
+    background-color: #060536; /* Violet foncé */
+    color: #fff; /* Texte blanc */
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
+}
+
+/* Style pour les cellules de table */
+.client-table td {
+    background-color: #f2f2f2; /* Fond de cellule clair */
+    padding: 12px;
+    border-bottom: 1px solid #ddd; /* Bordure inférieure */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
+}
+
+/* Style pour les lignes de table alternées */
+.client-table tr:nth-child(even) {
+    background-color: #e6e6e6; /* Fond légèrement gris pour les lignes paires */
+}
+
+/* Style pour la ligne au survol */
+.client-table tr:hover {
+    background-color: #ddd; /* Fond au survol */
+    transform: translateY(-5px); /* Légère élévation au survol */
+}
+
+/* Style pour le tableau vide */
+.client-table td[colspan="5"] {
+    text-align: center;
+    color: #888; /* Texte gris pour le message "Aucun client trouvé" */
+    padding: 20px;
+}
+
+</style>
+<body>
+    <div class="sidebar">
+        <div class="logo"><h2>CRM</h2></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="/vr">
+                    <i class="fas fa-chart-line"></i>
+                    <span>VR LAND</span>
+                </a>
+            </li>
+            <li>
+                <a href="/fid">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>FID</span>
+                </a>
+            </li>
+            <li>
+                <a href="/pme">
+                    <i class="fas fa-users"></i>
+                    <span>PME</span>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2><%= title %></h2>
+            </div>
+            <div class="client-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Solde</th>
+                            <th>Reste du Solde</th>
+                            <th>Nombre de Jeux</th>
+                            <th>Nombre de Visites</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (clients && clients.length > 0) { %>
+                            <% clients.forEach(client => { %>
+                                <tr>
+                                    <td><%= client.nom %></td>
+                                    <td><%= client.solde %></td>
+                                    <td><%= client.reste_du_solde %></td>
+                                    <td><%= client.nombre_de_jeux %></td>
+                                    <td><%= client.nombre_de_visites %></td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="5">Aucun client trouvé</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>        
+        </div>
+    </div>
+</body>
+</html>

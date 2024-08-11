@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+/* Style pour la section principale de contenu */
+.main--content {
+    padding: 20px;
+    background-color: #f9f9f9; /* Fond clair pour contrasté avec le contenu */
+    border-radius: 8px; /* Coins arrondis pour une apparence moderne */
+    display: flex; /* Utilisation de Flexbox pour centrer le contenu */
+    justify-content: center; /* Centre le contenu horizontalement */
+    align-items: center; /* Centre le contenu verticalement */
+    height: 100vh; /* Prend toute la hauteur de la vue */
+}
+
+/* Style pour le conteneur de l'information sur le solde */
+.balance-info {
+    text-align: center; /* Centre le texte */
+    background-color: #ffffff; /* Fond blanc pour le conteneur du solde */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile pour un effet de profondeur */
+    padding: 15px; /* Padding réduit pour un effet plus compact */
+    margin: 10px; /* Espace autour du conteneur */
+    max-width: 300px; /* Limite la largeur pour une meilleure présentation */
+}
+
+/* Style pour le titre du solde */
+.balance-info h2 {
+    font-size: 1.2rem; /* Taille de police légèrement plus petite pour le titre */
+    color: #333; /* Couleur sombre pour le titre */
+    margin-bottom: 10px; /* Espace en dessous du titre */
+    font-weight: 600; /* Poids de police pour le titre */
+}
+
+/* Style pour le montant du solde */
+.balance-info p {
+    font-size: 1.5rem; /* Taille de police réduite pour le montant */
+    color: #007bff; /* Couleur bleue pour mettre en valeur le montant */
+    margin: 0; /* Enlève les marges par défaut */
+    font-weight: 700; /* Poids de police plus lourd pour le montant */
+    padding: 8px; /* Ajoute un peu de padding autour du montant */
+    border: 2px solid #13032e; /* Bordure bleue autour du montant */
+    border-radius: 8px; /* Coins arrondis pour le montant */
+    background-color: #e9f5ff; /* Fond légèrement coloré pour le montant */
+}
+
+
+</style>
+
+<body>
+    <div class="sidebar">
+        <div class="logo"><h2>CRM</h2></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="/vr">
+                    <i class="fas fa-chart-line"></i>
+                    <span>VR LAND</span>
+                </a>
+            </li>
+            <li>
+                <a href="/fid">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>FID</span>
+                </a>
+            </li>
+            <li>
+                <a href="/pme">
+                    <i class="fas fa-users"></i>
+                    <span>PME</span>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2><%= title %></h2>
+            </div>
+            <div class="balance-info">
+                <h2>Solde Total</h2>
+                <p><%= balance %></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

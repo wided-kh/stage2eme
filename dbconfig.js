@@ -11,15 +11,18 @@ const config = {
   }
 };
 
-async function testConnection() {
-  try {
-    await sql.connect(config);
-    console.log('Connection successful');
-  } catch (err) {
-    console.error('Connection error:', err);
-  }
-}
-
-testConnection();
+// Connexion à la base de données
+sql.connect(config)
+    .then(pool => {
+        if (pool.connecting) {
+            console.log('Connecting to database...');
+        }
+        if (pool.connected) {
+            console.log('Connected to database.');
+        }
+    })
+    .catch(err => {
+        console.error('Database connection failed:', err);
+    });
 
 module.exports = sql;

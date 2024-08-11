@@ -53,47 +53,105 @@
         <div class="main">
             <div class="cards">
                 <div class="card">
-                    <div class="card-content">
-                        <div class="number"><%= clientCount %></div>
-                        <div class="card-name">Clients</div>
-                    </div>
-                    <div class="icon-box">
-                        <i class="fas fa-user"></i>
-                    </div>
+                    
+                        <div class="card-content">
+                            <div class="number"><%= clientCount %></div>
+                            <a href="/clients">
+                            <div class="card-name">Clients</a></div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </a>
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"><%= balance %></div>
-                        <div class="card-name">Solde</div>
+                        <div class="number"><%=  balance %></div>
+                        <a href="/solde">
+                        <div class="card-name">Solde</a></div>
                     </div>
                     <div class="icon-box">
                         <i class="fas fa-dollar-sign"></i>
                     </div>
                 </div>
+
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"><%= activityCount %></div>
-                        <div class="card-name">Activités</div>
+                        <div class="number"><%= top_clients %></div>
+                        <a href="/top-clients">
+                            <div class="card-name">Top-Clients</div>
+                        </a>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-tasks"></i>
+                        <i class="fas fa-users"></i>
                     </div>
                 </div>
+                
+                <!-- Add more cards if needed -->
             </div>
         </div>
         <div class="charts">
             <div class="chart">
-                <h2>Solde (passé dans 12 mois)</h2>
-                <canvas id="lineChart"></canvas>
+                <h2>VR</h2>
+                <canvas id="barchart"></canvas>
             </div>
-            <div class="chart" id="doughnut-chart">
-                <h2>VR LAND</h2>
-                <canvas id="doughnut"></canvas>
+            <div class="chart" id="doughnut">
+                <h2>Top Clients</h2>
+                <canvas id="doughnut-chart"></canvas>
             </div>
         </div>
+       
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-    <script src="/chart1.js"></script>
-    <script src="/chart5.js"></script>
+    <script >
+        var ctx = document.getElementById('barchart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Clients", "Solde Total", "Reste du Solde", "Clients Revenants"],
+                datasets: [{
+                    label: 'Données',
+                    data: [<%= clientCount %>, <%= balance %>, <%= remainingBalance %>, <%= returningClients %>],
+                    backgroundColor: ['#b91d47', 'pink', '#3357FF', '#F3FF33']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    
+    <script>
+        // Graphique en doughnut pour les sommes des données des clients
+    var ctxDoughnut = document.getElementById('doughnut-chart').getContext('2d');
+    new Chart(ctxDoughnut, {
+        type: 'doughnut',
+        data: {
+            labels: ["Total Visites", "Total Jeux"],
+            datasets: [{
+                label: 'Données des Clients',
+                data: [<%= doughnutData.total_visites %>, <%= doughnutData.total_jeux %>],
+                backgroundColor: ['#FF6384', 'blue' ],
+                hoverBackgroundColor: ['#FF6384', 'blue' ]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+
+    </script>
+    
+   
 </body>
 </html>

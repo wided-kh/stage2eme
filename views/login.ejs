@@ -1,5 +1,11 @@
-<style>
-    /* Google Font Link */
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Google Font Link */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
     *{
         margin: 0;
@@ -215,62 +221,90 @@
             display: none;
         }
     }
-</style>
+    </style>
+        
 </head>
-<div class="container">
-    <input type="checkbox" id="flip">
-    <div class="cover">
-        <div class="front">
-            <img src="public/lac.png" alt="" >
-            <div class="text">
-                <span class="text-2">Connectons-nous</span>
+<body>
+    <div class="container">
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="front">
+                <img src="public/images/lac.png" alt="">
+                <div class="text">
+                    <span class="text-2">Connectons-nous</span>
+                </div>
+            </div>
+            <div class="back">
+                <div class="text">
+                    <span class="text-2">Rejoignez-nous</span>
+                </div>
             </div>
         </div>
-        <div class="back">
-            <div class="text"></div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="login-form">
+                    <div class="title">Se connecter</div>
+                    <form action="/login" method="post">
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" name="email" placeholder="Entrer votre email" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+                            </div>
+                            <div class="text"><a href="#">Mot de passe oublié?</a></div>
+                            <div class="button input-box">
+                                <input type="submit" value="Connecter">
+                            </div>
+                            <div class="text sign-up-text">Vous n'avez pas de compte ? <label for="flip">Inscrivez-vous maintenant</label></div>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-form">
+                    <div class="title">Inscrivez-vous</div>
+                    <form action="/signup" method="post">
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" name="email" placeholder="Entrer votre email" required>
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" name="password" placeholder="Entrez votre mot de passe" required>
+                            </div>
+                            <div class="button input-box">
+                                <input type="submit" value="S'inscrire">
+                            </div>
+                            <div class="text sign-up-text">Vous avez déjà un compte? <label for="flip">Connecter</label></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="forms">
-        <div class="form-content">
-            <div class="login-form">
-                <div class="title">Se connecter</div>
-                <form action="/login" method="post">
-                    <div class="input-boxes">
-                        <div class="input-box">
-                            <i class="fas fa-envelope"></i>
-                            <input type="text" name="email" placeholder="Entrer votre email" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" name="password" placeholder="Enter votre mot de passe" required>
-                        </div>
-                        <div class="text"><a href="#">Mot de passe oublié?</a></div>
-                        <div class="button input-box">
-                            <input type="submit" value="Connecter">
-                        </div>
-                        <div class="text sign-up-text">Vous n'avez pas de compte ? <label for="flip">Inscrivez-vous maintenant</label></div>
-                    </div>
-                </form>
-            </div>
-            <div class="signup-form">
-                <div class="title">Inscrivez-vous</div>
-                <form action="/signup" method="post">
-                    <div class="input-boxes">
-                        <div class="input-box">
-                            <i class="fas fa-envelope"></i>
-                            <input type="text" name="email" placeholder="Enter votre email" required>
-                        </div>
-                        <div class="input-box">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" name="password" placeholder="Enter votre mot de passe" required>
-                        </div>
-                        <div class="button input-box">
-                            <input type="submit" value="S'inscrire">
-                        </div>
-                        <div class="text sign-up-text">Vous avez déjà un compte? <label for="flip">Connecter</label></div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+    <script>
+        // Ajoutez le JavaScript ici (voir ci-dessous)
+        // script.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    const flipCheckbox = document.getElementById('flip');
+    const loginForm = document.querySelector('.login-form');
+    const signupForm = document.querySelector('.signup-form');
+
+    // Switch between forms
+    flipCheckbox.addEventListener('change', function() {
+        if (flipCheckbox.checked) {
+            loginForm.style.transform = 'rotateY(-180deg)';
+            signupForm.style.transform = 'rotateY(0deg)';
+        } else {
+            loginForm.style.transform = 'rotateY(0deg)';
+            signupForm.style.transform = 'rotateY(180deg)';
+        }
+    });
+});
+
+    </script>
+</body>
+</html>
