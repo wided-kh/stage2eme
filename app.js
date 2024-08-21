@@ -65,7 +65,7 @@ app.get('/vr', async (req, res) => {
     // Première requête pour obtenir le nombre de clients et le solde total
     const summaryResult = await sql.query(`
       SELECT 
-          COUNT(*) AS clientCount,
+          COUNT(name) AS clientCount,
           SUM(cumulative_consumption_amount) AS totalBalance
       FROM VR
       WHERE CAST(last_consumption_time AS DATE) >= '2024-01-13';
@@ -109,7 +109,7 @@ WHERE CAST(jeux1.date AS DATE) >= '2024-01-13';
 // Requête pour obtenir le nombre de meilleurs clients
 const topClientsResult = await sql.query(`
   SELECT
-      COUNT(*) AS top_clients
+      COUNT(name) AS top_clients
   FROM jeux1
   WHERE CAST(date AS DATE) >= '2024-01-13';
 `);
@@ -202,7 +202,7 @@ app.get('/top-clients', async (req, res) => {
       const result = await sql.query(`
        SELECT
     jeux1.name AS nom,
-    COUNT(jeux1.nomdejeux) AS nombre_de_jeux,
+    COUNT(DISTINCT jeux1.nomdejeux) AS nombre_de_jeux,
     SUM(jeux1.nbvisite) AS nombre_de_visites,
     COALESCE(VR.cumulative_consumption_amount, 0) AS solde,
     COALESCE(VR.Deposit_amount, 0) AS reste_du_solde

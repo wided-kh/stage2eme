@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <style>
-   /* Style général pour la table */
+ /* Style général pour la table */
 .client-table {
     display: flex;
-    flex-direction: column; /* Aligne le contenu verticalement */
-    align-items: center; /* Centre horizontalement */
-    padding: 20px 0; /* Ajoute du padding en haut et en bas */
+    justify-content: center; /* Centre horizontalement */
+    padding: 40px 0; /* Ajoute du padding en haut et en bas */
 }
 
 /* Style pour la table */
 .client-table table {
-    width: 100%;
+    width: 80%; /* Ajuste la largeur de la table pour qu'elle prenne 80% de la largeur de l'écran */
     max-width: 1200px; /* Limite la largeur maximale du tableau */
     border-collapse: collapse;
-    margin: 0; /* Supprime la marge par défaut */
+    margin: 0 auto; /* Centre la table horizontalement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère pour un effet d'élévation */
     transition: transform 0.3s ease-in-out; /* Ajoute une transition pour le mouvement */
 }
 
@@ -28,18 +28,20 @@
 .client-table th {
     background-color: #060536; /* Violet foncé */
     color: #fff; /* Texte blanc */
-    padding: 12px;
+    padding: 15px;
     text-align: left;
     font-weight: bold;
+    border-bottom: 2px solid #ddd; /* Bordure inférieure pour les en-têtes */
     transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
 }
 
 /* Style pour les cellules de table */
 .client-table td {
     background-color: #f2f2f2; /* Fond de cellule clair */
-    padding: 12px;
+    padding: 15px;
     border-bottom: 1px solid #ddd; /* Bordure inférieure */
     transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
+    text-align: center; /* Centrer le texte dans les cellules */
 }
 
 /* Style pour les lignes de table alternées */
@@ -58,7 +60,15 @@
     text-align: center;
     color: #888; /* Texte gris pour le message "Aucun client trouvé" */
     padding: 20px;
+    font-style: italic; /* Italique pour un effet plus stylé */
 }
+
+/* Ajout d'une bordure arrondie */
+.client-table table, .client-table th, .client-table td {
+    border-radius: 8px; /* Arrondit les coins */
+}
+
+
 
 </style>
 <body>
