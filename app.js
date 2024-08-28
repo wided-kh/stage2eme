@@ -84,6 +84,15 @@ app.get('/vr', async (req, res) => {
         WHERE CAST(last_consumption_time AS DATE) >= '2024-01-13';
     `);
 
+   // Requête pour obtenir le total des jeux distincts
+   const summaryResultGames = await sql.query(`
+    SELECT 
+      COUNT(DISTINCT(jeux1.nomdejeux)) AS totalGamesCount
+    FROM jeux1
+    WHERE CAST(jeux1.date AS DATE) >= '2024-01-13';
+  `);
+
+
     // Troisième requête pour obtenir les statistiques pour le graphique en barres
     const chartResult = await sql.query(`
       SELECT
@@ -123,6 +132,7 @@ if (doughnutDataResult.recordset.length > 0) {
 res.render('vr', {
   title: 'VR',
   clientCount: summaryResult.recordset[0].clientCount,
+  
   balance: summaryResult.recordset[0].totalBalance,
   remainingBalance: chartResult.recordset[0].remainingBalance,
   returningClients: chartResult.recordset[0].returningClients,
@@ -132,7 +142,8 @@ res.render('vr', {
     total_visites: doughnutDataResult.recordset[0].total_visites || 0,
     total_jeux: doughnutDataResult.recordset[0].total_jeux || 0
     
-  }
+  },
+  total_games_sum: summaryResultGames.recordset[0].totalGamesCount // Utilisation du total des jeux distincts
   
 });
 
