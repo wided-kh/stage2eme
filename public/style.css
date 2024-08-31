@@ -241,3 +241,174 @@ body {
     } 
      
 }
+
+/* Style global pour la section principale */
+.main1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #1c0331; /* Violet très foncé */
+    min-height: 100vh; /* Hauteur minimale pour centrer verticalement */
+}
+
+/* Style pour le conteneur des détails du profil */
+.profile-details {
+    background-color: #290526; /* Couleur de fond légèrement plus claire que le fond */
+    border-radius: 12px; /* Coins arrondis */
+    box-shadow: 0 6px 12px rgba(47, 7, 66, 0.2); /* Ombre douce avec effet de profondeur */
+    padding: 20px;
+    width: 100%;
+    max-width: 600px; /* Largeur maximale du conteneur */
+    margin: 0 auto; /* Centrer horizontalement */
+    font-family: 'Arial', sans-serif; /* Police élégante */
+    transition: all 0.3s ease-in-out; /* Transition douce pour les effets */
+}
+
+/* Effet au survol du conteneur */
+.profile-details:hover {
+    background-color: #3c3c4e; /* Couleur de fond au survol */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre plus marquée au survol */
+    transform: scale(1.02); /* Légère augmentation de la taille */
+}
+
+/* Style pour chaque paragraphe dans les détails du profil */
+.profile-details p {
+    margin: 12px 0; /* Espacement entre les paragraphes */
+    font-size: 16px; /* Taille de la police */
+    line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
+}
+
+/* Style pour les labels en gras */
+.profile-details p strong {
+    font-weight: bold; /* Texte en gras */
+    color: #e0e0e0; /* Couleur du texte pour les labels */
+    display: inline-block; /* Pour ajouter de l'espace après le label */
+    margin-right: 10px; /* Espacement après le label */
+}
+
+/* Style pour les valeurs affichées */
+.profile-details p {
+    color: #f0f0f0; /* Couleur du texte pour les valeurs */
+}
+
+/* Animation pour les valeurs affichées */
+.profile-details p {
+    animation: fadeIn 1s ease-in-out; /* Animation d'apparition */
+}
+
+/* Définition de l'animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Style général pour les boutons */
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Style pour les boutons principaux */
+.btn-primary {
+    background-color: #4e0b30; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte */
+    border: 1px solid #32094b; /* Bordure avec la même couleur que le fond */
+}
+
+.btn-primary:hover {
+    background-color: #341253; /* Couleur de fond au survol */
+    color: #fff; /* Conserver la couleur du texte */
+    box-shadow: 0 4px 8px rgba(27, 8, 116, 0.2); /* Ombre au survol */
+}
+
+.btn-primary:focus {
+    outline: none; /* Retirer le contour par défaut du focus */
+    box-shadow: 0 0 0 2px rgba(33, 4, 59, 0.5); /* Ombre pour le focus */
+}
+
+/* Style pour le bouton de modifier le profil */
+.btn-primary {
+    background-color: #2a063a; /* Couleur de fond personnalisée */
+    border: 1px solid #2e0c38; /* Bordure personnalisée */
+}
+
+.btn-primary:hover {
+    background-color: #460b32; /* Couleur de fond au survol personnalisée */
+    border: 1px solid #3b0c31; /* Bordure personnalisée au survol */
+}
+
+
+
+/* Style pour la section principale */
+.main2 {
+    background-color: #0d023a; /* Couleur de fond sombre */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(102, 17, 74, 0.3);
+}
+
+/* Style pour le formulaire */
+.main2 form {
+    display: flex;
+    flex-direction: column;
+}
+
+.main2 form label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #ecf0f1; /* Texte clair pour contraste */
+}
+
+.main2 form input {
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 1px solid #40054e; /* Bordure sombre */
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #b891a1; /* Fond sombre pour les champs de saisie */
+    color: #ecf0f1; /* Texte clair */
+}
+
+.main2 form button {
+    background-color: #50043c; /* Couleur de fond du bouton */
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Effet de transition */
+}
+
+.main2 form button:hover {
+    background-color: #3a0626; /* Couleur au survol */
+}
+
+/* Style pour l'image de l'utilisateur */
+.user--info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #18043a; /* Bordure sombre autour de l'image */
+    cursor: pointer;
+    transition: border-color 0.3s ease; /* Effet de transition pour la bordure */
+}
+
+.user--info img:hover {
+    border-color: #f1a7f8; /* Couleur de la bordure au survol */
+}
