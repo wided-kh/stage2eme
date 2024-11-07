@@ -254,15 +254,90 @@ app.get('/top-clients', async (req, res) => {
 
 
 // Route pour la page FID
-app.get('/fid', (req, res) => {
-    // Vous pouvez ajuster les variables passées à la vue selon vos besoins
+// Route pour obtenir les données de fidélité des clients et les dépenses par client
+// Route pour obtenir les données de fidélité des clients et les dépenses par client
+// Votre route dans Node.js (app.js ou routes.js)
+app.get('/fid', async (req, res) => {
+  try {
+    // Exécute la requête SQL pour obtenir le nombre de clients fidèles
+    const topClientsResult = await sql.query(`
+      SELECT
+          COUNT(DISTINCT(name)) AS top_clients
+      FROM jeux1
+      WHERE CAST(date AS DATE) >= '2024-01-13';
+    `);
+    const top_clients = topClientsResult.recordset.length > 0 ? topClientsResult.recordset[0].top_clients : 0;
+
+    // Exécute la requête SQL pour obtenir les dépenses cumulées par client
+    const depensesResult = await sql.query(`
+      SELECT
+          name,
+          SUM(cumulative_consumption_amount) AS total_depenses
+      FROM VR
+      GROUP BY name
+      ORDER BY total_depenses DESC;
+    `);
+    const depenses_par_client = depensesResult.recordset;
+
+    // Calculer le total des dépenses cumulées de tous les clients
+    const total_depenses = depenses_par_client.reduce((total, client) => total + client.total_depenses, 0);
+
+    // Correction de la requête pour obtenir le nombre de clients
+    const summaryResult = await sql.query(`
+      SELECT 
+          COUNT(name) AS clientCount
+      FROM VR
+      WHERE CAST(last_consumption_time AS DATE) >= '2024-01-13';
+    `);
+    const clientCount = summaryResult.recordset.length > 0 ? summaryResult.recordset[0].clientCount : 0;
+
+    // Rendre la vue avec les données
     res.render('fid', {
-        title: 'FID',
-        clientCount: 100,       // Remplacez par la valeur réelle
-        paymentAmount: '100$',  // Remplacez par la valeur réelle
-        activityCount: 5        // Remplacez par la valeur réelle
+      title: 'Fidélité Clients',
+      top_clients,
+      depenses_par_client,
+      total_depenses,
+      clientCount
     });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erreur lors de la récupération des données');
+  }
 });
+
+ 
+
+
+
+// Route pour obtenir les dépenses par client
+app.get('/depenses_par_client', async (req, res) => {
+  try {
+    // Exécute la requête SQL pour obtenir les dépenses cumulées par client
+    const depensesResult = await sql.query(`
+      SELECT
+          name,
+          SUM(cumulative_consumption_amount) AS total_depenses
+      FROM VR
+      GROUP BY name
+      ORDER BY total_depenses DESC;
+    `);
+
+    // Récupère les résultats sous forme de tableau d'objets
+    const depenses_par_client = depensesResult.recordset;
+
+    // Rendre la vue avec les données ou envoyer les données en JSON
+    res.render('depenses_par_client', {
+      title: 'Dépenses par Client',
+      depenses_par_client
+    });
+
+  } catch (err) {
+    console.error("Erreur lors de la récupération des données :", err);
+    res.status(500).send("Erreur du serveur");
+  }
+});
+
+
 
 app.get('/profile', async (req, res) => {
   try {

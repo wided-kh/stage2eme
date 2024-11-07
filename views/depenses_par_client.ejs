@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Style général pour la table */
+        .client-table {
+            display: flex;
+            justify-content: center; /* Centre horizontalement */
+            padding: 40px 0; /* Ajoute du padding en haut et en bas */
+        }
+
+        /* Style pour la table */
+        .client-table table {
+            width: 80%; /* Ajuste la largeur de la table pour qu'elle prenne 80% de la largeur de l'écran */
+            max-width: 1200px; /* Limite la largeur maximale du tableau */
+            border-collapse: collapse;
+            margin: 0 auto; /* Centre la table horizontalement */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère pour un effet d'élévation */
+            transition: transform 0.3s ease-in-out; /* Ajoute une transition pour le mouvement */
+        }
+
+        /* Style pour les en-têtes de table */
+        .client-table th {
+            background-color: #060536; /* Violet foncé */
+            color: #fff; /* Texte blanc */
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd; /* Bordure inférieure pour les en-têtes */
+            transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
+        }
+
+        /* Style pour les cellules de table */
+        .client-table td {
+            background-color: #f2f2f2; /* Fond de cellule clair */
+            padding: 15px;
+            border-bottom: 1px solid #ddd; /* Bordure inférieure */
+            transition: background-color 0.3s ease; /* Transition pour le changement de couleur de fond */
+            text-align: center; /* Centrer le texte dans les cellules */
+        }
+
+        /* Style pour les lignes de table alternées */
+        .client-table tr:nth-child(even) {
+            background-color: #e6e6e6; /* Fond légèrement gris pour les lignes paires */
+        }
+
+        /* Style pour la ligne au survol */
+        .client-table tr:hover {
+            background-color: #ddd; /* Fond au survol */
+            transform: translateY(-5px); /* Légère élévation au survol */
+        }
+
+        /* Style pour le tableau vide */
+        .client-table td[colspan="5"] {
+            text-align: center;
+            color: #888; /* Texte gris pour le message "Aucun client trouvé" */
+            padding: 20px;
+            font-style: italic; /* Italique pour un effet plus stylé */
+        }
+
+        /* Ajout d'une bordure arrondie */
+        .client-table table, .client-table th, .client-table td {
+            border-radius: 8px; /* Arrondit les coins */
+        }
+
+        /* Style général pour la sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #060536;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+        }
+
+        .sidebar .logo h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .menu {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar .menu li {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .sidebar .menu li a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar .menu li a:hover {
+            background-color: #444;
+            border-radius: 5px;
+        }
+
+        .sidebar .menu li i {
+            margin-right: 10px;
+        }
+
+        /* Styles pour le contenu principal */
+        .main--content {
+            margin-left: 260px;
+            padding: 20px;
+        }
+
+        .header--wrapper {
+            margin-bottom: 30px;
+        }
+
+        .header--title h2 {
+            font-size: 24px;
+            color: #060536;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><h2>CRM</h2></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="/vr">
+                    <i class="fas fa-chart-line"></i>
+                    <span>VR LAND</span>
+                </a>
+            </li>
+            <li>
+                <a href="/fid">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>FID</span>
+                </a>
+            </li>
+            <li>
+                <a href="/profile">
+                    <i class="fas fa-users"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li class="logout">
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main--content">
+        <div class="header--wrapper">
+            <div class="header--title">
+                <h2><%= title %></h2>
+            </div>
+        </div>
+
+        <!-- Tableau pour les dépenses par client -->
+        <div class="client-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom du Client</th>
+                        <th>Total des Dépenses (€)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (depenses_par_client.length > 0) { %>
+                        <% depenses_par_client.forEach(client => { %>
+                            <tr>
+                                <td><%= client.name %></td>
+                                <td><%= client.total_depenses %></td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="2">Aucun client trouvé</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

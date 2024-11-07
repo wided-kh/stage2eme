@@ -5,6 +5,8 @@
     <title><%= title %></title>
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
     <div class="sidebar">
@@ -54,8 +56,10 @@
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"><%= clientCount %></div>
-                        <div class="card-name">Clients</div>
+                        <div class="number"><%= top_clients %></div>
+                        <a href="/top-clients">
+                            <div class="card-name">Top-Clients</div>
+                        </a>
                     </div>
                     <div class="icon-box">
                         <i class="fas fa-user"></i>
@@ -63,37 +67,18 @@
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number"><%= paymentAmount %></div>
-                        <div class="card-name">Paiement</div>
+                        <div class="number"><%= total_depenses %></div>
+                        <a href="/depenses_par_client">
+                            <div class="card-name">depenses_par_client</div>
+                        </a>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-dollar-sign"></i>
+                        <i class="fas fa-credit-card"></i>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number"><%= activityCount %></div>
-                        <div class="card-name">Activités</div>
-                    </div>
-                    <div class="icon-box">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                </div>
+               
+                
             </div>
-        </div>
-        <div class="charts">
-            <div class="chart">
-                <h2>Paiement</h2>
-                <canvas id="barchart"></canvas>
-            </div>
-            <div class="chart" id="doughnut-chart">
-                <h2><%= title %></h2>
-                <canvas id="doughnut"></canvas>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-    <script src="/chart2.js"></script>
-    <script src="/chart3.js"></script>
+
 </body>
 </html>
